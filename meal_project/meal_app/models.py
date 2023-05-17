@@ -1,8 +1,9 @@
 from django.db import models
 
 class Meal(models.Model):
-    """Model to populate data from the DB API with."""
+    """Model to populate meal data from the DB API with."""
 
+    id = models.CharField(max_length=50, blank = True, primary_key=True)
     name = models.CharField(max_length=50, blank = True, null = True)
     category = models.CharField(max_length=10, blank = True, null = True)
     instructions = models.CharField(max_length=4000, blank = True, null = True)

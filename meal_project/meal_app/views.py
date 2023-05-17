@@ -9,13 +9,14 @@ def get_meals(request):
 
     if 'name' in request.GET:
         name = request.GET['name']
-        url = 'https://www.themealdb.com/api/json/v1/1/search.php?s=%s' % name
+        url = f'https://www.themealdb.com/api/json/v1/1/search.php?s={name}'
         response = requests.get(url)
         data = response.json()
         meals = data['meals']
 
         for meal in meals:
             meal_data = Meal(
+                id = meal['idMeal'],
                 name = meal['strMeal'],
                 category = meal['strCategory'],
                 instructions = meal['strInstructions'],
@@ -30,4 +31,8 @@ def get_meals(request):
 
 def meal_detail(request):
     """A view for individual meals"""
-    pass
+    
+    meal = Meal.objects.get(id=id)
+
+    print(meal)
+    return render(request, 'meals/meal_detail.html', {'meal': meal})
