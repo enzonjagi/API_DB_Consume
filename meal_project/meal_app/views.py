@@ -29,7 +29,7 @@ def get_meals(request):
 
     return render(request, 'meals/meal.html', {"all_meals": all_meals})
 
-def meal_detail(request):
+def meal_detail(request, id):
     """A view for individual meals"""
     
     meal = Meal.objects.get(id=id)
